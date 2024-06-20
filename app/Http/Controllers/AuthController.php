@@ -33,7 +33,6 @@ class AuthController extends Controller
         return response()->json($user, 201);
     }
 
-
     /**
      * Get a JWT via given credentials.
      *

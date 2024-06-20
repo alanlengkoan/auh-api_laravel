@@ -15,8 +15,8 @@ class AuthController extends Controller
     public function register()
     {
         $validator = Validator::make(request()->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
         ]);
 
@@ -24,9 +24,9 @@ class AuthController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $user = new User();
-        $user->name = request()->name;
-        $user->email = request()->email;
+        $user           = new User();
+        $user->name     = request()->name;
+        $user->email    = request()->email;
         $user->password = bcrypt(request()->password);
         $user->save();
 
@@ -92,8 +92,8 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'token_type'   => 'bearer',
+            'expires_in'   => auth()->factory()->getTTL() * 60
         ]);
     }
 }
